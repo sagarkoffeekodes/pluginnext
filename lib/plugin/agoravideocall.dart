@@ -57,7 +57,7 @@ class _Agora_videocallState extends State<Agora_videocall> {
       ),
     );
 
-    await _engine.joinChannel(token, "test", null, 0);
+    await _engine.joinChannel(token, "test1", null, 0);
   }
 
   // Create UI with local view and remote view
@@ -92,7 +92,7 @@ class _Agora_videocallState extends State<Agora_videocall> {
   // Display remote user's video
   Widget _remoteVideo() {
     if (_remoteUid != null) {
-      return RtcRemoteView.SurfaceView(uid: _remoteUid!);
+      return RtcRemoteView.SurfaceView(uid: _remoteUid!,channelId: "test1",);
     } else {
       return Text(
         'Please wait for remote user to join',
