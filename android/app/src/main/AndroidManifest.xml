@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.pluginnext">
+    package="com.example.pluginnext"
+    xmlns:tools="http://schemas.android.com/tools">
 
 
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
@@ -14,7 +15,9 @@
    <application
         android:label="pluginnext"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        tools:node="merge">
+
         <activity
             android:name=".MainActivity"
             android:exported="true"

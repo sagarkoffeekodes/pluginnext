@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:pluginnext/plugin/SharedAxsTransition.dart';
 import 'package:pluginnext/plugin/agoravideocall.dart';
 import 'package:pluginnext/plugin/animination.dart';
+import 'package:pluginnext/plugin/cashfree.dart';
 import 'package:pluginnext/plugin/hiveDatabbse.dart';
 import 'package:pluginnext/plugin/pages/index.dart';
 import 'package:pluginnext/plugin/pay.dart';
 import 'package:pluginnext/plugin/paytm.dart';
-import 'package:pluginnext/plugin/razorpayment.dart';
+import 'package:pluginnext/plugin/utils/razor/razorpayment.dart';
 import 'package:pluginnext/plugin/slidinguppanel.dart';
 import 'package:pluginnext/plugin/smoothpageindicator.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -73,6 +74,10 @@ class _PluginNextState extends State<PluginNext> {
             ElevatedButton(onPressed: (){
               Navigator.push(context, MaterialPageRoute(builder: (context)=>Agora_videocall()));
             }, child: Text("aggroa2")),
+
+            ElevatedButton(onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>Cash_free_paymentgateway()));
+            }, child: Text("Cashfree")),
           ],
         ),
       ),
