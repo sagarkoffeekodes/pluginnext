@@ -39,82 +39,110 @@ class _Cash_free_paymentgatewayState extends State<Cash_free_paymentgateway> {
         centerTitle: true,
         title: const Text("Cash Free",style: TextStyle(color: Colors.white,fontSize: 15)),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(right: 230),
-            child: Text("Amount", style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30,color: Colors.black,),),
-          ),
+      body: Padding(
 
-          Padding(
-            padding: const EdgeInsets.only(left: 20,right: 20,top: 10),
-            child: TextField(
-              controller: _orderNumber,
-              style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30,color: Colors.blue,),
-              keyboardType: TextInputType.number,
-              inputFormatters: <TextInputFormatter>[
-                FilteringTextInputFormatter.digitsOnly
-              ],
-              decoration: InputDecoration(
+        padding: const EdgeInsets.only(top: 80,left: 20,right: 20),
+        child: Container(
+          height: 500,
+          child: Card(
 
-                  hintText: "0",
-                  hintStyle: TextStyle(fontWeight: FontWeight.bold,fontSize: 30),
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(
-                        color: Colors.red,
-                        width: 5.0),
-                  )
+            elevation: 10,
+            child: Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 230),
+                    child: Text("Amount", style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15,color: Colors.black,),),
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20,right: 20,top: 10),
+                    child: TextField(
+                      controller: _orderNumber,
+                      style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15,color: Colors.blue,),
+                      keyboardType: TextInputType.number,
+                      inputFormatters: <TextInputFormatter>[
+                        FilteringTextInputFormatter.digitsOnly
+                      ],
+                      decoration: InputDecoration(
+
+                          hintText: "0",
+                          hintStyle: TextStyle(fontWeight: FontWeight.bold,fontSize: 15),
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Colors.red,
+                                width: 5.0),
+                          )
+                      ),
+                    ),
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.only(right: 230,top: 20),
+                    child: Text("Order Id", style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15,color: Colors.black,),),
+                  ),
+
+
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20,right: 20,top: 10),
+                    child: TextFormField(
+                      controller: _orderId,
+                      style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15,color: Colors.blue,),
+
+                      decoration: InputDecoration(
+
+                          hintStyle: TextStyle(fontWeight: FontWeight.bold,fontSize: 15),
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: Colors.red,
+                                width: 5.0),
+                          )
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 30,),
+                  Center(
+                    child: RaisedButton(
+                      child: const Text('CashFree Payment',
+                          style: TextStyle(
+                              color: Colors.black,fontSize: 12)),
+                      onPressed: () async {
+                        return upiFetch(_orderId.text,_orderNumber.text);
+                        setState(() {
+                          _orderId.clear();
+                          _orderNumber.clear();
+                        });
+
+                      },
+                    ),
+                  ),
+
+                  SizedBox(height: 30,),
+                  Center(
+                    child: RaisedButton(
+                      child: const Text('SEAMLESS PAYPAL Payment',
+                          style: TextStyle(
+                              color: Colors.black,fontSize: 12)),
+                      onPressed: () =>  upiFetch1(_orderId.text,_orderNumber.text),
+                    ),
+                  ),
+
+                  Center(
+                    child: RaisedButton(
+                      child: Text('SEAMLESS UPI INTENT'),
+                      onPressed: () => seamlessUPIIntent1
+                    ),
+                  ),
+
+
+
+                ],
               ),
             ),
           ),
-
-          Padding(
-            padding: const EdgeInsets.only(right: 230,top: 20),
-            child: Text("Order Id", style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30,color: Colors.black,),),
-          ),
-
-
-          Padding(
-            padding: const EdgeInsets.only(left: 20,right: 20,top: 10),
-            child: TextFormField(
-              controller: _orderId,
-              style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30,color: Colors.blue,),
-
-              decoration: InputDecoration(
-
-                  hintStyle: TextStyle(fontWeight: FontWeight.bold,fontSize: 30),
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(
-                        color: Colors.red,
-                        width: 5.0),
-                  )
-              ),
-            ),
-          ),
-          SizedBox(height: 30,),
-          Center(
-            child: RaisedButton(
-              child: const Text('CashFree Payment',
-                  style: TextStyle(
-                      color: Colors.black,fontSize: 12)),
-              onPressed: () =>  upiFetch(_orderId.text,_orderNumber.text),
-            ),
-          ),
-
-          SizedBox(height: 30,),
-          Center(
-            child: RaisedButton(
-              child: const Text('SEAMLESS PAYPAL Payment',
-                  style: TextStyle(
-                      color: Colors.black,fontSize: 12)),
-              onPressed: () =>  upiFetch1(_orderId.text,_orderNumber.text),
-            ),
-          ),
-
-
-        ],
+        ),
       ),
     );
   }
@@ -157,6 +185,54 @@ class _Cash_free_paymentgatewayState extends State<Cash_free_paymentgateway> {
       //Do something with the result
     }));
   }
+
+
+
+
+
+
+  // SEAMLESS UPI Intent
+  Future<void> seamlessUPIIntent1(String token,String oid, String oAmount) async {
+    //Replace with actual values
+    String orderId = oid;
+    String stage = "PROD";
+    String orderAmount = oAmount;
+    String tokenData = "TOKEN_DATA";
+    String customerName = "Customer Name";
+    String orderNote = "Order_Note";
+    String orderCurrency = "INR";
+    String appId = "APP_ID";
+    String customerPhone = "Customer Phone";
+    String customerEmail = "sample@gmail.com";
+    String notifyUrl = "https://test.gocashfree.com/notify";
+
+
+    Map<String, dynamic> inputParams = {
+      "orderId": orderId,
+      "orderAmount": orderAmount,
+      "customerName": customerName,
+      "orderNote": orderNote,
+      "orderCurrency": orderCurrency,
+      "appId": appId,
+      "customerPhone": customerPhone,
+      "customerEmail": customerEmail,
+      "stage": stage,
+      "tokenData": token,
+      "notifyUrl": notifyUrl,
+
+
+      // For seamless UPI Intent
+    //  "appName": _selectedApp["id"]
+    };
+
+    CashfreePGSDK.doUPIPayment(inputParams)
+        .then((value) => value?.forEach((key, value) {
+      print("$key : $value");
+      //Do something with the result
+    }));
+  }
+
+
 
 
   // SEAMLESS - Paypal
@@ -231,6 +307,11 @@ class _Cash_free_paymentgatewayState extends State<Cash_free_paymentgateway> {
       print("pass token");
 
       await seamlessUPIIntent(tokenpass,oid,orderAmount);
+      setState(() {
+        _orderId.clear();
+        _orderNumber.clear();
+      });
+
 
       print("seamless");
 
@@ -243,6 +324,7 @@ class _Cash_free_paymentgatewayState extends State<Cash_free_paymentgateway> {
     else {
       setState(() {
         isLoading= false;
+
       });
 
       throw Exception('Failed to load ');

@@ -27,8 +27,10 @@ class _Payment_RazorState extends State<Payment_Razor> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
+
           title: const Text('Razorpay Sample App'),
         ),
+
         body: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

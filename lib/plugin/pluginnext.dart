@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:pluginnext/orderid.dart';
+import 'package:pluginnext/plugin/Ringtone_example.dart';
 import 'package:pluginnext/plugin/SharedAxsTransition.dart';
 import 'package:pluginnext/plugin/agoravideocall.dart';
 import 'package:pluginnext/plugin/animination.dart';
+import 'package:pluginnext/plugin/bootpaY.dart';
 import 'package:pluginnext/plugin/cashfree.dart';
 import 'package:pluginnext/plugin/hiveDatabbse.dart';
+import 'package:pluginnext/plugin/kakkko.dart';
 import 'package:pluginnext/plugin/pages/index.dart';
 import 'package:pluginnext/plugin/pay.dart';
 import 'package:pluginnext/plugin/paytm.dart';
@@ -78,6 +82,22 @@ class _PluginNextState extends State<PluginNext> {
             ElevatedButton(onPressed: (){
               Navigator.push(context, MaterialPageRoute(builder: (context)=>Cash_free_paymentgateway()));
             }, child: Text("Cashfree")),
+
+            ElevatedButton(onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>OrderId()));
+            }, child: Text("demoListview")),
+
+              ElevatedButton(onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>Kakako()));
+            }, child: Text("Kakko")),
+
+            ElevatedButton(onPressed: (){
+           Navigator.push(context, MaterialPageRoute(builder: (context)=>BootpaY()));
+            }, child: Text("Bootpay")),
+
+            ElevatedButton(onPressed: (){
+           Navigator.push(context, MaterialPageRoute(builder: (context)=>Ring_toneExamaple()));
+            }, child: Text("Ringtone")),
           ],
         ),
       ),

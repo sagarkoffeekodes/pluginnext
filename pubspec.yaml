@@ -48,6 +48,9 @@ dependencies:
   permission_handler: ^8.3.0
   cashfree_pg: ^2.0.9+29
   http: ^0.13.4
+  flutter_kakao_login: ^3.4.0
+  bootpay: ^1.9.1
+  ringtone_player: ^0.1.1
 
 
 dev_dependencies:
